@@ -44,6 +44,6 @@ public class AnimalService {
     }
 
     public List<Entity> searchAnimalsByName(String namePart) {
-        return animalRepository.findByNameContaining(namePart);
+        return animalRepository.findByName(namePart);
     }
 }

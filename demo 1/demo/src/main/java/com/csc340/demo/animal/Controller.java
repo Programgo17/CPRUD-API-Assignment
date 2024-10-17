@@ -23,23 +23,28 @@ public class Controller {
     }
 
     @PostMapping("/new")
-    public void addNewAnimal(@RequestBody Entity animal) {
+    public List<Entity> addNewAnimal(@RequestBody Entity animal) {
         animalService.addNewAnimal(animal);
+        return animalService.getAllAnimals();
     }
 
     @PutMapping("/update/{animalId}")
-    public void updateAnimal(@PathVariable int animalId, @RequestBody Entity animal) {
+    public Entity updateAnimal(@PathVariable int animalId, @RequestBody Entity animal) {
         animalService.updateAnimal(animalId, animal);
+        return animalService.getAnimalById(animalId);
     }
 
     @DeleteMapping("/delete/{animalId}")
-    public void deleteAnimal(@PathVariable int animalId) {
+    public List<Entity> deleteAnimal(@PathVariable int animalId) {
         animalService.deleteAnimalById(animalId);
+        return animalService.getAllAnimals();
     }
+
 
     @GetMapping("/species")
     public List<Entity> getAnimalsBySpecies(@RequestParam String species) {
         return animalService.getAnimalsBySpecies(species);
+
     }
 
     @GetMapping("/search")
